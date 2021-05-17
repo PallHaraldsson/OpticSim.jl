@@ -5,6 +5,25 @@
 using .OpticSim.GlassCat: AbstractGlass, Air
 
 export SphericalLens, ConicLens, AsphericLens, FresnelLens
+export SimpleLens
+
+struct SimpleLens{T} <: CSGTree{T}
+    front::ParametricSurface{T}
+    back::ParametricSurface{T}
+    barrel::ParametricSurface{T}
+    lens::CSGTree{T}
+
+    function SimpleLens(
+        vertex::T, thickness::T, semidiameter::T, front::ParametricSurface{T}, back::ParametricSurface{T}
+    ) where {T<:Real}
+        barrel_height = thickness
+        barrel_interface = FresnelInterface{T}(front.interface.insidematerial)
+        barrel = Cylinder(semidiameter, barrel_height; interface=barrel_interface)
+
+        lens = (front ∩ back ∩ barrel)(translation(zero(T), zero(T), -vertex))
+        return new{T}(front, back, barrel, lens)
+    end
+end
 
 function opticinterface(
     ::Type{T},
