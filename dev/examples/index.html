@@ -47,9 +47,9 @@ end</code></pre>
     raygenerator &#61; Sources.Source&#40;; transform, origins, directions&#41;
 
     aspherics &#61; &#91;
-        &#91;4 &#61;&gt; 1.0386E-04, 6 &#61;&gt; 1.4209E-07, 8 &#61;&gt; -8.8495E-09, 10 &#61;&gt; 1.2477E-10, 12 &#61;&gt; -1.0367E-12, 14 &#61;&gt; 3.6556E-15&#93;,
-        &#91;4 &#61;&gt; 4.2721E-05, 6 &#61;&gt; 1.2484E-07, 8 &#61;&gt; 9.7079E-09, 10 &#61;&gt; -1.8444E-10, 12 &#61;&gt; 1.8644E-12, 14 &#61;&gt; -7.7975E-15&#93;,
-        &#91;4 &#61;&gt; 1.1339E-04, 6 &#61;&gt; 4.8165E-07, 8 &#61;&gt; 1.8778E-08, 10 &#61;&gt; -5.7571E-10, 12 &#61;&gt; 8.9994E-12, 14 &#61;&gt; -4.6768E-14&#93;,
+        &#91;&quot;4&quot; &#61;&gt; 1.0386E-04, &quot;6&quot; &#61;&gt; 1.4209E-07, &quot;8&quot; &#61;&gt; -8.8495E-09, &quot;10&quot; &#61;&gt; 1.2477E-10, &quot;12&quot; &#61;&gt; -1.0367E-12, &quot;14&quot; &#61;&gt; 3.6556E-15&#93;,
+        &#91;&quot;4&quot; &#61;&gt; 4.2721E-05, &quot;6&quot; &#61;&gt; 1.2484E-07, &quot;8&quot; &#61;&gt; 9.7079E-09, &quot;10&quot; &#61;&gt; -1.8444E-10, &quot;12&quot; &#61;&gt; 1.8644E-12, &quot;14&quot; &#61;&gt; -7.7975E-15&#93;,
+        &#91;&quot;4&quot; &#61;&gt; 1.1339E-04, &quot;6&quot; &#61;&gt; 4.8165E-07, &quot;8&quot; &#61;&gt; 1.8778E-08, &quot;10&quot; &#61;&gt; -5.7571E-10, &quot;12&quot; &#61;&gt; 8.9994E-12, &quot;14&quot; &#61;&gt; -4.6768E-14&#93;,
     &#93;
     syss &#61; &#91;
         AxisymmetricOpticalSystem&#123;Float64&#125;&#40;DataFrame&#40;
@@ -67,7 +67,27 @@ end</code></pre>
     end
     return syss
 end</code></pre>
-</div><pre><code class="language-">syss = draw_zoomlenses([&quot;assets/zoom$i.png&quot; for i in 1:3]); @show syss[1]; nothing # hide</code></pre><p><img src="assets/zoom1.png" alt="Zoom position 1 visualization"/> <img src="assets/zoom2.png" alt="Zoom position 2 visualization"/> <img src="assets/zoom3.png" alt="Zoom position 3 visualization"/></p><h2 id="Schmidt-Cassegrain-Telescope"><a class="docs-heading-anchor" href="#Schmidt-Cassegrain-Telescope">Schmidt Cassegrain Telescope</a><a id="Schmidt-Cassegrain-Telescope-1"></a><a class="docs-heading-anchor-permalink" href="#Schmidt-Cassegrain-Telescope" title="Permalink"></a></h2><div class="markdown"><pre><code class="language-julia">function draw_schmidtcassegraintelescope&#40;filename::Union&#123;Nothing,AbstractString&#125; &#61; nothing&#41;
+</div><pre class="documenter-example-output">syss[1] = 17×6 DataFrame
+ Row │ SurfaceType  Radius     Parameters                         Thickness      Material       SemiDiameter
+     │ String       Float64    Array…?                            Float64?       Abstract…?     Float64
+─────┼───────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ Object        Inf       missing                                Inf        Air               Inf
+   2 │ Stop          Inf       missing                                  0.0      Air                 2.89
+   3 │ Standard      -16.2022  missing                                  5.18     OHARA.S_LAH66       3.85433
+   4 │ Standard      -48.8759  missing                                  0.1      Air                 3.85433
+   5 │ Standard       15.6666  missing                                  4.4      NIKON.LLF6          4.36305
+   6 │ Aspheric      -42.9553  [&quot;4&quot;=&gt;0.00010386, &quot;6&quot;=&gt;1.4209e-7…        0.16     Air                 4.36305
+   7 │ Standard      108.696   missing                                  1.0      OHARA.S_TIH6        4.72506
+   8 │ Standard       23.6239  missing                                  4.96     OHARA.S_FSL5        4.72506
+   9 │ Aspheric      -16.0591  [&quot;4&quot;=&gt;4.2721e-5, &quot;6&quot;=&gt;1.2484e-7,…        9.48     Air                 4.72506
+  10 │ Aspheric     -425.532   [&quot;4&quot;=&gt;0.00011339, &quot;6&quot;=&gt;4.8165e-7…        4.04     OHARA.S_FSL5        4.45241
+  11 │ Standard      -35.4359  missing                                  1.35     Air                 4.45241
+  12 │ Standard      -14.1463  missing                                  1.0      OHARA.S_LAL8        4.50974
+  13 │ Standard     -251.256   missing                                  2.8      OHARA.S_FSL5        4.50974
+  14 │ Standard      -22.5023  missing                                  3.0      Air                 4.50974
+  15 │ Standard      -10.5831  missing                                  1.22     OHARA.S_LAH66       4.76271
+  16 │ Standard      -44.4444  missing                                  4.46971  Air                 4.76271
+  17 │ Image         Inf       missing                            missing        missing            15.0</pre><p><img src="../assets/zoom1.png" alt="Zoom position 1 visualization"/> <img src="../assets/zoom2.png" alt="Zoom position 2 visualization"/> <img src="../assets/zoom3.png" alt="Zoom position 3 visualization"/></p><h2 id="Schmidt-Cassegrain-Telescope"><a class="docs-heading-anchor" href="#Schmidt-Cassegrain-Telescope">Schmidt Cassegrain Telescope</a><a id="Schmidt-Cassegrain-Telescope-1"></a><a class="docs-heading-anchor-permalink" href="#Schmidt-Cassegrain-Telescope" title="Permalink"></a></h2><div class="markdown"><pre><code class="language-julia">function draw_schmidtcassegraintelescope&#40;filename::Union&#123;Nothing,AbstractString&#125; &#61; nothing&#41;
     # glass entrance lens on telescope
     topsurf &#61; Plane&#40;
         SVector&#40;0.0, 0.0, 1.0&#41;,
@@ -259,4 +279,4 @@ end</code></pre>
     end
     return nothing
 end</code></pre>
-</div><p><img src="../assets/deterministic_trace_1.png" alt="Nondeterministic Raytrace"/> <img src="../assets/deterministic_trace_2.png" alt="Transmission only"/> <img src="../assets/deterministic_trace_3.png" alt="Reflection only"/></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><a class="docs-footer-nextpage" href="../basic_types/">Basic Types »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Thursday 13 May 2021 19:47">Thursday 13 May 2021</span>. Using Julia version 1.6.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+</div><p><img src="../assets/deterministic_trace_1.png" alt="Nondeterministic Raytrace"/> <img src="../assets/deterministic_trace_2.png" alt="Transmission only"/> <img src="../assets/deterministic_trace_3.png" alt="Reflection only"/></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><a class="docs-footer-nextpage" href="../basic_types/">Basic Types »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Wednesday 19 May 2021 18:38">Wednesday 19 May 2021</span>. Using Julia version 1.6.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
